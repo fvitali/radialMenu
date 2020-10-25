@@ -31,19 +31,9 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
 </script>
 okay
  
-<script type="text/javascript">
-// JavaScript example
-
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script>
-<p>okay</p>
-A style tag (type 1):
-
-Example 141
 <style
   type="text/css">
 h1 {color:red;}
 
 p {color:blue;}
 </style>
-okay
