@@ -6,7 +6,7 @@ A pure CSS library for radial lists and menus
 
 Ciao mamma
 
-	  	<div class="radialMenu size2" style="margin-left: 2em; margin-right: 2em;">
+<div class="radialMenu size2" style="margin-left: 2em; margin-right: 2em;">
 			<span class="radialPivot icon noborder"><span class='far fa-clock'></span></span>
 			<ul class="radialList active clock radius2 f2" role="navigation" aria-label="menu items">
 				<li><a class="icon" href="javascript:alert(`It's 12 o'clock`)">12</a></li>
@@ -22,4 +22,4 @@ Ciao mamma
 				<li><a class="icon" href="javascript:alert(`It's 10 o'clock`)">10</a></li>
 				<li><a class="icon" href="javascript:alert(`It's 11 o'clock`)">11</a></li>
 			</ul>
-		</div>
+</div>
