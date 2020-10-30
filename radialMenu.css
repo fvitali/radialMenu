@@ -1,4 +1,4 @@
-﻿	:root {
+﻿	:root {  
 		--radius: 4em; 
 		--radial-delay: 0.1s;
 		--radial-speed: 0.1s;
@@ -7,37 +7,69 @@
 		--font-size: 1;
 		--background-color: transparent; 
 		--color: black;
-		--border: transparent; 
 
+		--ml: calc( var(--radius) / 2 + 1rem);
+		--mr: calc(var(--radius) / 2 + 1rem);
 	}
-	.radialMenu {
+	
+	/* Radial menu as a whole */ 
+	
+	.radial {
 		display: inline-block;
 		position: relative; 
 		vertical-align: middle; 
-		width: var(--icon-size) !important ;
+		/* 		width: var(--icon-size) !important ;   */
 		height: var(--icon-size) !important ;
 	}
+
+	/* Central element (pivot) */ 
+	
 	.radialPivot {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		position: absolute; 
+		position: relative; 
 		z-index: 10; 
 		left: 0px; 
 		top: 0px; 
+		margin-left: 0px;
+		margin-right: 0px;
 		width: var(--icon-size) !important ;
 		height: var(--icon-size) !important ;
 		
-		font-size: calc( var(--icon-size) * var(--font-size) * 0.66) !important ;
+		transition: all var(--radial-speed) ease-in;
+	}
+
+	.radialPivot {
 		line-height: calc( var(--icon-size) * var(--font-size) )  !important ;
 		background-color: var(--background-color); 
 		color: var(--color);
-		border: solid var(--border) 1px; 
 	}
+
+	.radialPivot > * {
+		font-size: calc( var(--icon-size) * var(--font-size) * 1) !important ;
+	}
+	
 	label.radialPivot {
-	    cursor: pointer;	
+		cursor: pointer;	
 	}
-	.radialPivot-check {
+	
+	.radial.list.clear .radialPivot , 
+	.radial.menu.clear  input[type=checkbox]:checked ~ .radialPivot  {
+		margin-left: var(--ml);
+		margin-right: var(--mr);
+	}
+	.radial.list.clearLeft .radialPivot , 
+	.radial.menu.clearLeft  input[type=checkbox]:checked ~ .radialPivot  {
+		margin-left: var(--ml);
+	}
+	.radial.list.clearRight .radialPivot , 
+	.radial.menu.clearRight  input[type=checkbox]:checked ~ .radialPivot  {
+		margin-right: var(--mr);
+	}
+
+
+	.radial input[type=checkbox] {
 		display: inline-block;
 		position: absolute; 
 		top: 0px;
@@ -45,77 +77,135 @@
 		z-index: 9; 
 		width: 1px !important ;
 		height: 1px !important ;
+		opacity: 0; 
 	}
+
+	/* Container, i.e. radial list */ 
+
 	.radialList {
 		display: inline-block;
-		position: absolute;
+		position: relative;
 		width: var(--icon-size) !important ;
 		height: var(--icon-size) !important ;
-		left: 0px;
-		top: 0px;
-		z-index: 8; 
-	    margin: 0px;
-	    padding: 0px;
+ 		z-index: 8; 
+		padding: 0px;
 		visibility: hidden;
 		list-style-type: none;
+		margin-top: 0px;
+		margin-bottom: 0px; 
+		margin-left: 0px;
+		margin-right: 0px;
+		transition: all var(--radial-speed) ease-in;
+		--center: calc(0.5 * var(--icon-size) - 1px);
+		left: 0px;
+		top: calc(-2 * var(--center) ); /* 2px are to consider the border of the pivot */
 	}
+
+	.radial.list .radialList , 
+	 input[type=checkbox]:checked ~ .radialList  {
+	}
+	.radial.list.clear .radialList , 
+	.radial.menu.clear  input[type=checkbox]:checked ~ .radialList  {
+		margin-left: var(--ml);
+		margin-right: var(--mr);
+	}
+	.radial.list.clearLeft .radialList , 
+	.radial.menu.clearLeft  input[type=checkbox]:checked ~ .radialList  {
+		margin-left: var(--ml);
+	}
+	.radial.list.clearRight .radialList , 
+	.radial.menu.clearRight  input[type=checkbox]:checked ~ .radialList  {
+		margin-right: var(--mr);
+	}
+
+	/* Individual items of radial list */ 
 
 	.radialList > * {
 		display: inline-block;
 		position: absolute;
 		display: flex;
-    	align-items: center;
-    	justify-content: center;	
+		align-items: center;
+		justify-content: center;	
 		top: 0px ;
 		left: 0px;
 		width: var(--icon-size) ;
 		height: var(--icon-size) ;
-	    margin: 0px;
-	    padding: 0px;
-		visibility: hidden;
-	}
-		
-	.radialList.active , 
-	.radialPivot-check:checked ~ .radialList  {
-		visibility: visible; 
-	}
-	.radialList:not(.active) > * {
-		left: 0px ; 
-		top: 0px; 
-		opacity: 0; 
+		margin: 0px;
+		padding: 0px;
 		visibility: hidden;
 		transition: all var(--radial-speed) ease-in;
+		z-index: 12; 
 	}
 
-	.radialList.active > *, 
-	.radialPivot-check:checked ~ .radialList > * {
+	.radial.list .radialList > *, 
+	 input[type=checkbox]:checked ~ .radialList > * {
 		font-size: calc( var(--icon-size) * var(--font-size) * 0.66) !important ;
 		line-height: calc( var(--icon-size) * var(--font-size) ) !important; 
 		background-color: var(--background-color); 
 		color: var(--color);
-		border: solid var(--border) 1px; 
-		
+
+		left: calc( var(--radius) * var(--left)  + (var(--center) - var(--icon-size) / 2));
+		top:  calc( var(--radius) * var(--top)   + (var(--center) - var(--icon-size) / 2));		
+/* 
 		top: calc( var(--radius) * var(--top) ) ;
 		left: calc( var(--radius) * var(--left) ) ;
+ */
 		opacity: 1; 
 		visibility: visible;
-    }
+	}
 
-	.radialPivot-check:checked ~ .radialList > * {
+	 input[type=checkbox]:checked ~ .radialList > * {
 		-webkit-transition-delay: calc(var(--radial-delay) * var(--delay));
 		-moz-transition-delay: calc(var(--radial-delay) * var(--delay));
 		transition-delay: calc(var(--radial-delay) * var(--delay));
-    }
+	}
 	
-    .displace {
+	/* displace labels around item icons */ 
+	
+	.displace {
 		position: absolute;
-		width: calc( var(--Go North) * 1);
-		top: calc(0.5rem + var(--radius) * var(--top));
+		width: calc( var(--radius) * 1);
+		top: calc(0.25rem + var(--radius) * var(--top));
 		left: calc( var(--radius) * var(--left));
 		white-space: nowrap;
 		display:flex;
+		font-size: calc( var(--icon-size) * var(--font-size) * 0.66) !important ;
+		line-height: calc( var(--icon-size) * var(--font-size) ) !important; 
+		background-color: transparent; 
+		color: black;
+		border-radius: none; 
 	}
-    
+	
+	.icon {
+		border-radius: 50%; 
+	}
+	.border {
+		border: solid var(--color ) 1px; 
+	}
+	.radial a {
+		text-decoration: none;
+		color: inherit; 
+	} 
+
+	.icon:hover {
+		filter: invert(20%) ;
+	}
+
+	.icon:active {
+		filter: contrast(0) ;
+	}
+
+	.sronly {
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		width: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+	}
+
 	  
 	.clock > *:nth-of-type(1) { --top: -1.000;   --left:  0.000; --delay: 0; }
 	.clock > *:nth-of-type(2) { --top: -0.866;   --left:  0.500; --delay: 1; }
@@ -162,7 +252,7 @@
 	.compass > *:nth-of-type(16) { --top: -0.924 ;   --left: -0.383 ; --delay: 15; }
 
 
-	.pN,   .compass0, .compass16    { --top: -1.000 !important ;   --left:  0.000 !important ; } 
+	.pN,   .compass0, .compass16	{ --top: -1.000 !important ;   --left:  0.000 !important ; } 
 	.pNNE, .compass1  { --top: -0.924 !important ;   --left:  0.383 !important ; }
 	.pNE,  .compass2  { --top: -0.707 !important ;   --left:  0.707 !important ; }
 	.pENE, .compass3  { --top: -0.383 !important ;   --left:  0.924 !important ; }
@@ -180,6 +270,41 @@
 	.pNNW, .compass15 { --top: -0.924 !important ;   --left: -0.383 !important ; }
 
 	
+	.size0 { --icon-size: 0.75rem !important; }
+	.size1 { --icon-size: 1.00rem !important; }
+	.size2 { --icon-size: 1.25rem !important; }
+	.size3 { --icon-size: 1.50rem !important; }
+	.size4 { --icon-size: 1.75rem !important; }
+	.size5 { --icon-size: 2.00rem !important; }
+	.size6 { --icon-size: 2.25rem !important; }
+	.size7 { --icon-size: 2.50rem !important; }
+	.size8 { --icon-size: 2.75rem !important; }
+	.size9 { --icon-size: 3.00rem !important; }
+
+	.radius1 { --radius: 1rem !important; }
+	.radius15 { --radius: 1.5rem !important; }
+	.radius2 { --radius: 2rem !important; }
+	.radius3 { --radius: 3rem !important; }
+	.radius4 { --radius: 4rem !important; }
+	.radius5 { --radius: 5rem !important; }
+	.radius6 { --radius: 6rem !important; }
+	.radius7 { --radius: 7rem !important; }
+	.radius8 { --radius: 8rem !important; }
+	.radius9 { --radius: 9rem !important; }
+	.radius10 { --radius: 10rem !important; }
+
+	.f0 { --font-size: 0.50; } 
+	.f1 { --font-size: 0.66; } 
+	.f2 { --font-size: 0.75; }
+	.f3 { --font-size: 1.00; }
+	.f4 { --font-size: 1.25; }
+	.f5 { --font-size: 1.33; }
+	.f6 { --font-size: 1.50; }
+
+	.tl { text-align: left;   justify-content: flex-start;}
+	.tc { text-align: center; justify-content: center; }
+	.tr { text-align: right;  justify-content: flex-end; }
+
 	.d1  { --delay: 0 !important ; }
 	.d2  { --delay: 1 !important ; }
 	.d3  { --delay: 2 !important ; }
@@ -197,30 +322,6 @@
 	.d15 { --delay: 14 !important ; }
 	.d16 { --delay: 15 !important ; }
 	
-	.size0 { --icon-size: 0.85rem !important; }
-	.size1 { --icon-size: 1.00rem !important; }
-	.size2 { --icon-size: 1.25rem !important; }
-	.size3 { --icon-size: 1.50rem !important; }
-	.size4 { --icon-size: 1.75rem !important; }
-	.size5 { --icon-size: 2.00rem !important; }
-	.size6 { --icon-size: 2.25rem !important; }
-	.size7 { --icon-size: 2.50rem !important; }
-	.size8 { --icon-size: 2.75rem !important; }
-	.size9 { --icon-size: 3.00rem !important; }
-
-	.radius0 { --radius: 0rem !important; }
-	.radius05 { --radius: 0.5rem !important; }
-	.radius1 { --radius: 1rem !important; }
-	.radius2 { --radius: 2rem !important; }
-	.radius3 { --radius: 3rem !important; }
-	.radius4 { --radius: 4rem !important; }
-	.radius5 { --radius: 5rem !important; }
-	.radius6 { --radius: 6rem !important; }
-	.radius7 { --radius: 7rem !important; }
-	.radius8 { --radius: 8rem !important; }
-	.radius9 { --radius: 9rem !important; }
-	.radius10 { --radius: 10rem !important; }
-
 	.delay0  { --radial-delay: 0.0s !important; }
 	.delay05 { --radial-delay: 0.05s !important; }
 	.delay1  { --radial-delay: 0.1s !important; }
@@ -246,26 +347,5 @@
 	.speed8  { --radial-speed: 0.8s !important; }
 	.speed9  { --radial-speed: 0.9s !important; }
 	.speed10 { --radial-speed: 1.0s !important; }
-	    
-    .f0 { --font-size: 0.50; } 
-    .f1 { --font-size: 0.66; } 
-    .f2 { --font-size: 0.75; }
-    .f3 { --font-size: 1.00; }
-    .f4 { --font-size: 1.25; }
-    .f5 { --font-size: 1.33; }
-    .f6 { --font-size: 1.50; }
-
-    .tl { text-align: left;   justify-content: flex-start;}
-    .tc { text-align: center; justify-content: center; }
-    .tr { text-align: right;  justify-content: flex-end; }
-    
-    .sronly {
-		clip: rect(1px, 1px, 1px, 1px);
-		clip-path: inset(50%);
-		height: 1px;
-		width: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-    }
+		
+	
