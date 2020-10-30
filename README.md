@@ -1,39 +1,4 @@
-# radialMenu
-A pure CSS library for radial lists and menus
-<link href="./radialMenu.css" rel="stylesheet">
+# Radial menu and radial list
+_A pure CSS library for inline lists and menus around a circle, flexible and customizable_
 
-# Hello World
-
-Ciao mamma
-
-<div class="radialMenu size2" style="margin-left: 2em; margin-right: 2em;">
-			<span class="radialPivot icon noborder"><span class='far fa-clock'></span></span>
-			<ul class="radialList active clock radius2 f2" role="navigation" aria-label="menu items">
-				<li><a class="icon" href="javascript:alert(`It's 12 o'clock`)">12</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 1 o'clock`)">1</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 2 o'clock`)">2</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 3 o'clock`)">3</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 4 o'clock`)">4</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 5 o'clock`)">5</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 6 o'clock`)">6</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 7 o'clock`)">7</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 8 o'clock`)">8</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 9 o'clock`)">9</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 10 o'clock`)">10</a></li>
-				<li><a class="icon" href="javascript:alert(`It's 11 o'clock`)">11</a></li>
-			</ul>
-</div>
-
-<script type="text/javascript">
-// JavaScript example
-
-document.getElementById("demo").innerHTML = "Hello JavaScript!";
-</script>
-okay
- 
-<style
-  type="text/css">
-h1 {color:red;}
-
-p {color:blue;}
-</style>
+A _radial layout_ organizes a list of items in a circle around a central element called _pivot_. _Radial lists_ always show the items around the pivot, while _radial menus_ use the pivot as a clickable toggle button to show and hide the items. Both lists and menus can be placed inline next to the boxes of other elements and text strings. Both the central pivot and the individual items can contain icons, text and labels, and can be hypertext links. </p>
