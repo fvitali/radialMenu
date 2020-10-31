@@ -7,7 +7,7 @@ A _radial layout_ organizes a list of items in a circle around a central element
 
 It looks like an icon or a small text (or anything with a square or circular look) that when clicked opens into a circular menu of options, either a full circle or a small list of items. 
 
-![before state](util/before.png) and ![after state](util/after.png)
+![before and after state](util/states.png)
 
 ## How to use it
 
@@ -19,7 +19,7 @@ Download and include in your HTML page the radialMenu.css file, and create a men
 				<span class='far fa-compass'></span>
 				<span class="sronly">Show menu items</span>
 			</label>
-			<ul class="radialList compass radius3" role="navigation" aria-label="menu items">
+			<ul class="radialList compass" role="navigation" aria-label="menu items">
 				<li class="icon"><a href="javascript:alert(`Go North`)">N</a></li>
 				<li class="f1"><a href="javascript:alert(`Go North North East`)">&#183;</a></li>
 				<li class="f1"><a href="javascript:alert(`Go North East`)">NE</a></li>
