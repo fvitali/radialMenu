@@ -16,8 +16,8 @@ Download and include in your HTML page the radialMenu.css file, and create a men
 	  	<div class="radial menu">
 			<input id="radialMenu" type="checkbox">
 			<label class="radialPivot" for="radialMenu">
-				<span class='far fa-compass'>
-        </span><span class="sronly">Show menu items</span>
+				<span class='far fa-compass'></span>
+				<span class="sronly">Show menu items</span>
 			</label>
 			<ul class="radialList compass radius3" role="navigation" aria-label="menu items">
 				<li class="icon"><a href="javascript:alert(`Go North`)">N</a></li>
