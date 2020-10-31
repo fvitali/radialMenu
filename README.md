@@ -42,4 +42,4 @@ You can look at some extensive documentation and showcase at http://www.fabiovit
 
 ## Licence
 
-radialMenu.css is free to use in non-commercial and commercial web applications alike. Inclusions of this library, modified or not, in packages and libraries for web development is always possible but subject to an agreement with the copyright holders.  
+This CSS library is subject to the terms of the Mozilla Public License, v. 2.0. See http://mozilla.org/MPL/2.0/. Additionally, inclusions of this library, modified or not, in packages and libraries for web development is possible under an agreement with the copyright holders.
